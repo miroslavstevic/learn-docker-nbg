@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  php-apache:
+    container_name: php-apache
+    ports:
+      - 8000:80
+    build: ./build/php
+    volumes:
+      - ./app:/var/www/html/
+  mysql:
+    container_name: mysql
+    ports:
+      - 3306:3306
+    build: ./build/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'strongnaturedb'
+    volumes:
+      - ./dbdata:/var/lib/mysql
+volumes:
+  app:
+  dbdata:
